@@ -40,6 +40,9 @@ class GildedRose
                 case 'Backstage passes to a TAFKAL80ETC concert':
                     $this->processConcertTicket($item);
                     break;
+                case 'Conjured Mana Cake':
+                    $this->processConjuredItem($item);
+                    break;
                 default:
                     $this->processNormalItem($item);
                     break;
@@ -72,6 +75,15 @@ class GildedRose
             }
             $this->assignQualityDelta($item, $qualityDelta);
         }
+    }
+
+    private function processConjuredItem(Item $item)
+    {
+        $qualityDelta = -2;
+        if ($this->isSellInPast($item)) {
+            $qualityDelta -= 2;
+        }
+        $this->assignQualityDelta($item, $qualityDelta);
     }
 
     private function processNormalItem(Item $item)
