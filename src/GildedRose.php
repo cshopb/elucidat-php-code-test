@@ -9,7 +9,6 @@ class GildedRose
 
     const MAXIMUM_QUALITY = 50;
     const MINIMUM_QUALITY = 0;
-    const NEXT_DAY_DELTA = -1;
 
     public function __construct(array $items)
     {
@@ -48,7 +47,7 @@ class GildedRose
                     break;
             }
 
-            $this->assignSellInDelta($item, self::NEXT_DAY_DELTA);
+            $this->assignNextDayToSellIn($item);
         }
     }
 
@@ -100,9 +99,9 @@ class GildedRose
         return $item->sellIn <= 0;
     }
 
-    private function assignSellInDelta(Item $item, $delta)
+    private function assignNextDayToSellIn(Item $item)
     {
-        $item->sellIn = $item->sellIn + $delta;
+        $item->sellIn -= 1;
     }
 
     private function assignQualityDelta(Item $item, $delta)
