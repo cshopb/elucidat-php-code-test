@@ -83,6 +83,29 @@ class GuildedRoseNextDayItemProcessorFactory
                 ]
             ),
 
+            'Conjured Mana Cake' => new GuildedRoseNextDayItemProcessor(
+                new NameIsExactlyMatcher('Conjured Mana Cake'),
+                [
+                    new Rule(
+                        new QualityGreaterThanValueMatcher(0),
+                        new QualityDeltaUpdater(-2)
+                    ),
+                    new Rule(
+                        new CompositeAndMatcher(
+                            [
+                                new QualityGreaterThanValueMatcher(0),
+                                new SellInLessThanEqualToValueMatcher(0),
+                            ]
+                        ),
+                        new QualityDeltaUpdater(-2)
+                    ),
+                    new Rule(
+                        new AlwaysTrueMatcher(),
+                        new SellInDeltaUpdater(-1)
+                    ),
+                ]
+            ),
+
             'All normal items (Default)' => new GuildedRoseNextDayItemProcessor(
                 new AlwaysTrueMatcher(),
                 [
