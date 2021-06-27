@@ -1,1 +1,6 @@
 /vendor
+/.idea/elucidat-php-code-test.iml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/vcs.xml
+composer.lock
